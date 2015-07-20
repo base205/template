@@ -1,0 +1,42 @@
+<div class="slider">
+	<div class="slider__controls">
+		<a href="#" class="slider__controls__next"><i class="fa fa-chevron-right"></i></a>
+		<a href="#" class="slider__controls__prev"><i class="fa fa-chevron-left"></i></a>
+	</div>
+	<!-- END .slider__controls -->
+
+        
+<!--div class="slider">
+    <img src="images/slider.png" />
+</div> 
+<a href="#" class="download_btn">
+    <b>DESCARGAR</b>
+</a
+Empezo
+-->   
+
+	<ul class="cycleSlider">
+		<?php foreach($this->data as $software): ?>
+		<li id="software-slide-<?= $software->codSoftware; ?>">
+			<div class="column1">
+			
+				<div class="h1"><h1><?= $software->name; ?></h1>
+				<h2 class="leyenda"><?= $software->brief; ?></h2>
+			
+				</div>
+				<a href="http://<?php echo $this->baseUrl().'/' .$software->uri; ?>" class="download_btn">
+					<!--i class="fa fa-angle-double-down"></i-->
+					<b><?= Zend_Registry::get('tr')->translate('DOWNLOAD'); ?></b>
+				</a>
+			</div>
+			<div class="image">
+				<img src="<?php echo $this->partialLoop()->view->site['assetsPath'] ?>/img/capture/<?php echo $software->codSoftware; ?>-featured.png" alt="<?= $software->name; ?>" height="290" width="490" />
+			</div>
+
+		</li>
+		<!-- END #software-<?= $software->codSoftware; ?> -->
+		<?php endforeach; ?>
+	</ul>
+	<!-- END .slider__slides -->
+</div>
+<!-- END .slider -->

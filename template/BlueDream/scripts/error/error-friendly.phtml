@@ -1,0 +1,26 @@
+<section id="main-content">
+    <div class="content">
+        <?php
+if ($this->headerBanner) {
+    echo $this->showBanner($this->headerBanner, 'headerBanner');
+}
+?>
+        <div class="box-left">
+            <div id="page">
+                <?php echo $this->action('index', 'content', null, array('section' => 'ERROR_MSG')); ?>
+            </div>
+        </div>
+        <div id="category" class="box-right">
+            <h2><?php echo Zend_Registry::get('tr')->translate('CATEGORIES') ?></h2>
+            <ul>
+                <?php echo $this->partialLoop('partials/categories.phtml', $this->categories); ?>
+            </ul>
+        </div>
+        <div class="clearboth"></div>
+    </div>
+</section>
+<?php
+if ($this->footerBanner) {
+    echo $this->showBanner($this->footerBanner, 'footerBanner');
+}
+?>

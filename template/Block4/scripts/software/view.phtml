@@ -1,0 +1,123 @@
+<div class="container">
+<?php echo $this->soft->scriptLandingPage; ?>
+
+<?php if(isset($this->googleQuery)): ?>
+<p id="googleSearch"><?php echo $this->tr->translate('You have searched for'); ?> "<?php echo $this->googleQuery ?>"</p>
+<?php endif; ?>
+
+<?php echo $this->headerBanner ? '<div class="ad">' . $this->showBanner($this->headerBanner, 'headerBanner') . '</div>' : ''; ?>
+
+<div class="content content--software">
+
+	<div class="softwarePage">
+
+		<header class="softwarePage__header">
+			<div class="softwarePage__header__container">
+				<div class="softwarePage__header__icon">
+					<img src="<?php echo $this->site['assetsPath'] ?>/img/icon/<?php echo $this->soft->codSoftware ?>.png" alt="<?php echo $this->soft->name ?>" />
+				</div>
+				<div class="softwarePage__header__content">
+					<div class="softwarePage__header__title">
+						<h1><?php echo $this->soft->name; ?></h1>
+					</div>
+				</div>
+			</div>
+			<div class="softwarePage__header__download">
+				<?php if($this->platform['isWindows']): ?>
+					<a href="<?php echo '/download/'.$this->uri.$this->statKey; ?>" class="softwarePage__header__download__btn">
+						<i></i><span class="underline"><?php echo $this->tr->translate('Click here Download'); ?></span>
+					</a>
+				<?php else: ?>
+					<?php echo (isset($this->banner->mobileMonetization)) ? $this->banner->mobileMonetization : '';?>
+			    <?php endif; ?>
+			</div>			
+		</header>
+		<!-- END .softwarePage__header -->
+
+		<section class="softwarePage__content">
+
+			<div class="softwarePage__content__block softwarePage__content__block--splash">
+				<div class="softwarePage__content__splash">
+					<div class="softwarePage__content__capture">
+						<img src="<?php echo $this->site['assetsPath'] ?>/img/capture/<?php echo $this->soft->codSoftware ?>.jpg" alt="<?php echo $this->soft->name ?>" />
+						<span class="free"><?php echo $this->tr->translate('100% free'); ?></span>
+					</div>
+					<!-- END .softwarePage__content__capture -->
+
+					<div class="softwarePage__content__excerpt">
+
+						<p class="main">
+							<?php echo $this->soft->brief; ?>
+						</p>
+				   		<?php echo $this->partial('partials/secure.phtml'); ?>
+				   		<div class="softwarePage__header__download">
+							<?php if($this->platform['isWindows']): ?>
+								<a href="<?php echo '/download/'.$this->uri.$this->statKey; ?>" class="softwarePage__header__download__btn">
+								<span><?php echo (strlen($this->soft->name) > 21) ? substr($this->tr->translate('DOWNLOAD'). ' ' . $this->soft->name, 0, 21).'...' : $this->tr->translate('DOWNLOAD') . ' ' . $this->soft->name; ?></span>
+								</a>
+						    <?php endif; ?>
+						</div>	
+				   		<div class="secondary">
+							<?php echo $this->downloadInfo; ?>
+				   		</div>
+					</div>
+					<!-- END .softwarePage__content__excerpt -->
+				</div>
+				<!-- END .softwarePage__content__splash -->
+			</div>
+			<!-- END .softwarePage__content__block.softwarePage__content__block-splash -->
+
+			<div class="softwarePage__content__block softwarePage__content__block--details">
+				<div class="softwarePage__details">
+					<h3><?php echo $this->tr->translate('Software Details') ?></h3>
+					<span class="reseller_notice">
+						<?php echo $this->site['name'] . $this->tr->translate('is not an official partner or reseller of') . ' ' . $this->soft->developer . $this->tr->translate("'s products") ?>
+					</span>
+					<div class="softwarePage__details__content">
+			            <?php echo $this->soft->detail; ?>
+		            </div>
+		            <div class="softwarePage__details__expand">
+		            	<a href="javascript:;" class="softwarePage__details__expand__btn" onclick="$('.softwarePage__details').toggleClass('active');">
+		            		<span class="onlyInactive">
+		            			<i class="fa fa-chevron-down"></i>
+								<b><?php echo Zend_Registry::get('tr')->translate('READ MORE') ?></b>
+		            		</span>
+		            		<span class="onlyActive">
+		            			<i class="fa fa-chevron-up"></i>
+								<b><?php echo Zend_Registry::get('tr')->translate('READ LESS') ?></b>
+		            		</span>
+		            	</a>
+		            </div>
+		            <div class="softwarePage__header__download">
+						<?php if($this->platform['isWindows']): ?>
+							<a href="<?php echo '/download/'.$this->uri.$this->statKey; ?>" class="softwarePage__header__download__btn">
+								<i></i><span><?php echo $this->tr->translate('Download'); ?></span>
+							</a>
+					    <?php endif; ?>
+					</div>
+				</div>
+				<!-- END .softwarePage__details -->
+
+				<?php echo $this->rightBanner ? '<div class="softwarePage__ad">' . $this->showBanner($this->rightBanner, 'rightBanner') . '</div><!-- END .softwarePage__ad -->' : ''; ?>				
+			</div>
+			<!-- END .softwarePage__content__block.softwarePage__content__block-details -->
+
+			<footer class="softwarePage__footer">
+				<img src="<?php echo $this->site['assetsPath'] ?>/img/toolbar_snippet.png" alt="Toolbar" />
+	    		<?php echo $this->toolbar; ?>
+			</footer>
+			<!-- END .softwarePage__footer -->
+
+		</section>
+		<!-- END .softwarePage__content -->
+
+	</div>
+	<!-- END .softwarePage -->
+
+    <?php echo $this->partial('partials/categories-list.phtml', array('title' => $this->tr->translate('Categories'), 'categories' => $this->categories)); ?>
+
+</div>
+<!-- END .content.content-software -->
+
+<?php echo $this->footerBanner ? '<div class="ad">' . $this->showBanner($this->footerBanner, 'footerBanner') . '</div>' : ''; ?>
+</div>

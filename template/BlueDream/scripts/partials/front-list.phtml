@@ -1,0 +1,15 @@
+<div class="software <?php echo ($this->partialCounter%2 == 1)?'border-left':''; ?> ">
+
+    <img src="<?php echo $this->partialLoop()->view->site['assetsPath'] ?>/img/icon/<?php echo $this->codSoftware ?>.png" alt="<?php echo $this->name ?>">
+
+    <h3><?php echo (strlen($this->name) > 10)?substr($this->name, 0, 10).'...':$this->name; ?></h3>
+
+    <p><?php echo (strlen($this->brief) > 95)?substr($this->brief, 0, 95).'...':$this->brief ?></p>
+
+    <a href="http://<?php echo $this->baseUrl() . '/' . $this->uri; ?>">
+
+        <?php echo Zend_Registry::get('tr')->translate('DOWNLOAD') ?>
+
+    </a>
+
+</div>

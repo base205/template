@@ -1,0 +1,59 @@
+<?= $this->soft->scriptDownloadPage; ?>
+
+<?= $this->partial('partials/modal.phtml', array('download' => array('url' => $this->downloadUrl, 'file' => $this->downloadName))); ?>
+
+<section class="hero" style="padding-bottom:0">
+    <div class="container">
+        <div class="slider" style="margin-bottom:-20px">
+            <ul class="slider__slides">
+                <li class="slider__slide" id="software-hero-<?= $this->soft->codSoftware; ?>">
+                    <div class="slider__slide__container">
+                        <div class="slider__slide__icon">
+                            <img src="<?= $this->software('icon', $this->soft); ?>" alt="<?= $this->soft->name; ?>" height="64" width="64" />
+                        </div>
+                        <div class="slider__slide__content">
+                            <div class="slider__slide__title">
+                                <h2><?= $this->soft->name; ?></h2>
+                            </div>
+                            <p class="slider__slide__brief">
+                                <?= $this->soft->brief; ?>
+                            </p>
+                        </div>
+                    </div>
+                </li>
+                <!-- END #software-hero-<?= $this->soft->codSoftware; ?> -->
+            </ul>
+            <!-- END .slider__slides -->
+        </div>
+        <!-- END .slider -->
+
+        <div class="helper helper--download-disclaimer">
+            <?= $this->downloadInfo; ?>
+        </div>
+    </div>
+</section>
+<!-- END .hero -->
+
+<section class="software software--single" id="software-<?= $this->soft->codSoftware; ?>">
+    <div class="container">
+        <div class="software__title">
+            <h3><?= $this->tr->translate('THANK YOU PAGE'); ?> <?= $this->soft->name ?></h3>            
+        </div>
+
+        <div class="software__content software__content--notification">
+            <div class="software__content__notification">
+                <?= $this->tr->translate('If the download does not start, please'); ?>
+                <a href="javascript:download('<?= $this->downloadUrl ?>', '<?= $this->downloadName ?>');"><?= $this->tr->translate('click here'); ?></a>
+            </div>
+        </div>
+        <!-- END .software__content -->
+
+        <?= $this->showBanner($this->headerBanner, 'ad', 'header'); ?>
+    </div>
+</section>
+<!-- END #software-<?= $this->soft->codSoftware; ?> -->
+
+<input type="hidden" name="downloadUrl" id="downloadUrl" value="<?= $this->downloadUrl ?>"/>
+<input type="hidden" name="downloadName" id="downloadName" value="<?= $this->downloadName ?>"/>
+<input type="hidden" name="signature" id="signature" value="<?= $this->site['signature'] ?>"/>
+<input type="hidden" id="baseUri" value="<?= $this->baseUrl(); ?>">

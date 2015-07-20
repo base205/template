@@ -1,0 +1,15 @@
+<section id="software-list">
+    <div class="content-inner">
+         <div id="content-title-result">
+            <h3 class="uppercase"><?php echo $this->tr->translate('THE SOFTWARE IS NOT FOUND') ?>
+                <?php echo $this->tr->translate('MAYBE_YOU_ARE_INTERESTED_IN_THESE') ?>
+                    <span class="software-down"><?php echo $this->tr->translate('RECOMENDED SOFTWARE') ?></span>:</h3>
+        </div>
+        <div class="list-soft promoted" id="list-new">
+        <ul class='software-list'>
+            <?php echo $this->partialLoop('partials/front-list.phtml',  $this->list); ?>
+        </ul>
+        </div>
+         <div class="clear"></div>
+    </div>
+</section>

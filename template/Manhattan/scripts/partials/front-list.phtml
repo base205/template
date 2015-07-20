@@ -1,0 +1,39 @@
+<li>
+
+    <div class="icon">
+
+        <a href="http://<?php echo $this->partialLoop()->view->baseUrl() . '/' . $this->uri; ?>">
+
+            <img src="<?php echo $this->partialLoop()->view->site['assetsPath'] ?>/img/icon/<?php echo $this->codSoftware ?>.png" width="64" height="64"  alt="<?php echo $this->name ?>" />
+
+        </a>
+
+    </div>
+
+    <div class="soft-item">
+
+        <a href="http://<?php echo $this->partialLoop()->view->baseUrl() . '/' . $this->uri; ?>" class="uppercase">
+
+            <?php echo $this->name ?>
+
+        </a>
+
+        <span class="brief">
+
+            <?php echo $this->brief ?>
+
+        </span>
+
+        <div class="download-btn clear">
+
+        <a class="btn-download-small" href="http://<?php echo $this->partialLoop()->view->baseUrl() . '/' . $this->uri; ?>"><?php echo $this->partialLoop()->view->tr->translate('Download') ?></a>
+
+        </div>
+
+    </div>
+
+
+
+
+
+</li>

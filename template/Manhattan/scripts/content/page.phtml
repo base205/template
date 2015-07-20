@@ -1,0 +1,16 @@
+<div class="content-inner">
+    <div class="page arial">
+        <?php
+        if ($this->headerBanner) {
+            echo $this->showBanner($this->headerBanner, 'headerBanner');
+        }
+        if ($this->image != '') { ?>
+            <img src="<?php echo $this->image ?>" />
+        <?php }
+        echo $this->content;
+        if ($this->footerBanner) {
+            echo $this->showBanner($this->footerBanner, 'footerBanner');
+        }
+        ?>	
+    </div>
+</div>

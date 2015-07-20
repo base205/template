@@ -1,0 +1,23 @@
+<li class="software software--item" id="software-<?= $this->codSoftware; ?>">
+	<div class="software__icon">
+		<a href="<?= $this->software('permalink', $this); ?>">
+			<img src="<?= $this->software('icon', $this); ?>" alt="<?= $this->name; ?>" height="64" width="64" />
+		</a>
+	</div>
+	<div class="software__title">
+		<a href="<?= $this->software('permalink', $this); ?>"><?= $this->name; ?></a>
+	</div>
+	<p class="software__brief">
+		<?= $this->brief; ?>
+	</p>
+	<div class="software__download">
+		<a href="<?= $this->software('permalink', $this); ?>" class="software__download__btn">
+			<i class="fa fa-angle-double-down"></i>
+			<span><?= Zend_Registry::get('tr')->translate('DOWNLOAD'); ?></span>
+		</a>
+	</div>
+	<div class="software__rating">
+        <span class="software__rating__stars software__rating__stars--<?= ceil($this->rating / 2); ?>"></span>
+	</div>
+</li>
+<!-- END #software-<?= $this->codSoftware; ?> -->

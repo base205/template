@@ -1,0 +1,20 @@
+<section class="hero">
+	<div class="container">
+		<?= $this->partial('partials/slider.phtml', array('data' => $this->featured, 'site' => $this->site)); ?>
+		<?= $this->showBanner($this->headerBanner, 'ad', 'header'); ?>
+	</div>
+</section>
+<!-- END .hero -->
+
+<?= $this->partial('partials/categories.phtml', array('categories' => $this->categories)); ?>
+
+<section class="software software--blocks">
+	<div class="container">
+		<h3><?= Zend_Registry::get('tr')->translate('TOP DOWNLOADS'); ?></h3>
+		<ul class="software__list">
+			<?= $this->partialLoop('partials/front-list.phtml',  array_splice($this->topDownloads,0,8)); ?>
+		</ul>
+		<?= $this->showBanner($this->footerBanner, 'ad', 'footer'); ?>
+	</div>
+</section>
+<!-- END .software.software-blocks -->

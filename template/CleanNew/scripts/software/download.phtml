@@ -1,0 +1,125 @@
+    <?php echo $this->soft->scriptDownloadPage; ?>
+    <input type="hidden" id="baseUri" value="<?php echo $this->baseUrl(); ?>">
+    <?php
+    if ($this->headerBanner) {
+        echo $this->showBanner($this->headerBanner, 'headerBanner');
+    }
+    ?>
+    <div id="download">
+        <div class="notStart">
+            <p class="text-1 Light"> <span style="background: url(<?php echo $this->site['assetsPath'] ?>/img/icon/<?php echo $this->soft->codSoftware ?>.png) no-repeat;"></span>
+                <?php echo $this->soft->name; ?></p>
+
+            <?php echo $this->tr->translate('If the download does not start, please'); ?>
+            <a href="javascript:download('<?php echo $this->downloadUrl ?>', '<?php echo $this->downloadName ?>');" 
+                id="btn-download"><?php echo $this->tr->translate('click here'); ?></a>
+
+            <input type="hidden" name="downloadUrl" id="downloadUrl" value="<?php echo $this->downloadUrl ?>"/>
+            <input type="hidden" name="downloadName" id="downloadName" value="<?php echo $this->downloadName ?>"/>
+            <input type="hidden" name="signature" id="signature" value="<?php echo $this->site['signature'] ?>"/>
+            <input type="hidden" name="externalBundle" id="externalBundle" value="<?= $this->externalBundle ?>"/>
+            <input type="hidden" name="externalBundleUrl" id="externalBundleUrl" value="<?= $this->externalBundleUrl ?>"/>
+
+        </div>
+        <div id="willStart">
+            <h1><?php echo $this->tr->translate('Thanks for downloading')?> </h1>
+        </div>
+
+        <div class="notStart">
+             <h2><?php echo $this->tr->translate('Follow these steps to install'); ?></h2>
+             <p class="notStarLink">
+                <?php echo $this->tr->translate('If your download doesn’t start'); ?>
+            </p>
+            
+            <a href="<?php echo $this->soft->uri ?>" class="btn-download pge-download" id="btn-download-again">
+                <span class="t-dw black">
+                    <span class="text-btn-dw"><?php echo Zend_Registry::get('tr')->translate('DOWNLOAD AGAIN') ?> </span>
+                </span>
+            </a>
+        </div>
+        <?php
+        if ($this->footerBanner) {
+            echo $this->showBanner($this->footerBanner, 'footerBanner');
+        }
+        if (strpos(strtolower($_SERVER["HTTP_USER_AGENT"]), "chrome")) { 
+        ?>
+            <div class="paso">
+                <div class="accion">
+                    <div><img src="http://<?php echo $this->baseUrl() . $this->site['assetsPath'] . '/img/instructions-chrome.jpg'; ?>" alt="Chrome"/></div>
+                </div>
+            </div>
+        <?php } else { ?>
+            <div class="paso">
+                <div class="numero">
+                    <img src="http://<?php echo $this->baseUrl() . $this->site['assetsPath'] . '/img/number1sm.png'; ?>" width="34" height="34" alt="step" />
+                </div>
+                <div class="accion">
+                    <?php if(strpos(strtolower($_SERVER["HTTP_USER_AGENT"]),"chrome")){ ?>
+                    <div>
+                        <div class="pasoTitle"><?php echo $this->tr->translate('Google Chrome Download'); ?>: <span class="pasoTexto"><?php echo $this->tr->translate('Click on').' "'.$this->soft->uri . '.' . $this->soft->exeType.'" '.$this->tr->translate('at the bottom of the page.'); ?></span></div>
+                        <div><img src="http://<?php echo $this->baseUrl() . $this->site['assetsPath'] . '/img/downloadChrome.png'; ?>" alt="Chrome"/></div>
+                    </div>
+                    <?php }elseif(strpos(strtolower($_SERVER["HTTP_USER_AGENT"]),"firefox")){ ?>
+                    <div>
+                        <div class="pasoTitle"><?php echo $this->tr->translate('Mozilla Firefox Download'); ?>: <span class="pasoTexto"><?php echo $this->tr->translate('Click "Save" button.'); ?></span></div>
+                        <div><img src="http://<?php echo $this->baseUrl() . $this->site['assetsPath'] . '/img/downloadFirefox.png'; ?>" alt="Firefox"/></div>
+                    </div>
+                    <?php }else{ ?>
+                    <div>
+                        <div class="pasoTitle"><?php echo $this->tr->translate('Internet Explorer Download'); ?>: <span class="pasoTexto"><?php echo $this->tr->translate('Click "Yes" at the bottom of the page.'); ?></span></div>
+                        <div><img src="http://<?php echo $this->baseUrl() . $this->site['assetsPath'] . '/img/downloadIE.png'; ?>" alt="Internet Explorer"/></div>
+                    </div>
+                    <?php } ?>
+                </div>
+            </div>
+            <div class='greenline'></div>
+            <div class="paso">
+                <div class="numero">
+                    <img src="http://<?php echo $this->baseUrl() . $this->site['assetsPath'] . '/img/number2sm.png'; ?>" width="34" height="34" alt="step" />
+                </div>
+                <div class="accionSmall">
+                    <?php if(strpos(strtolower($_SERVER["HTTP_USER_AGENT"]),"chrome")){ ?>
+                    <div>
+                        <div class="pasoTexto"><?php echo $this->tr->translate('Click "Run".'); ?></div>
+                        <div><img src="http://<?php echo $this->baseUrl() . $this->site['assetsPath'] . '/img/runChrome.jpg'; ?>" alt="Chrome"/></div>
+                    </div>
+                    <?php }elseif(strpos(strtolower($_SERVER["HTTP_USER_AGENT"]),"firefox")){ ?>
+                    <div>
+                        <div class="pasoTexto"><?php echo $this->tr->translate('When the download is complete double click on it.'); ?></div>
+                        <div><img src="http://<?php echo $this->baseUrl() . $this->site['assetsPath'] . '/img/runFirefox.jpg'; ?>" alt="Firefox"/></div>
+                    </div>
+                    <?php }else{ ?>
+                    <div>
+                        <div class="pasoTexto"><?php echo $this->tr->translate('Preparing your installation.'); ?></div>
+                        <div><img src="http://<?php echo $this->baseUrl() . $this->site['assetsPath'].'/img/runIE.jpg'; ?>" alt="step text"/></div>
+                    </div>
+                    <?php } ?>
+                </div>
+            </div>
+            <div class="paso">
+                <div class="numero">
+                    <img src="http://<?php echo $this->baseUrl() . $this->site['assetsPath'].'/img/number3sm.png'; ?>" width="34" height="34" alt="step" />
+                </div>
+                <div class="accionSmall">
+                    <div>
+                        <div class="pasoTexto"><?php echo $this->tr->translate('Click "Accept" and continue the process to complete the download.'); ?></div>
+                        <div id="acceptScr">
+                            <div id="acceptScrSoft">
+                                <div id="acceptScrName"><?php echo $this->soft->name ?></div>
+                                <div id="acceptScrIcon"><img height="30" src="<?php echo $this->site['assetsPath']?>/img/icon/<?php echo $this->soft->codSoftware ?>.png" alt="<?php echo $this->soft->name ?>" /></div>
+                            </div>
+                            <div id="acceptScrTitle"><?php echo $this->tr->translate('Welcome to the').' '.substr($this->soft->name, 0, 26).' '.$this->tr->translate('setup Wizard'); ?></div>
+                            <div id="acceptScrSubtitle"><?php echo $this->tr->translate('Follow the on-Screen instructions outlined in this wizard to install the new version of').' '.$this->tr->translate('and benefit from all the latest features and updates').' '.$this->tr->translate('has to offer.'); ?></div>
+                            <div id="acceptScrCapture"><img height="141" src="<?php echo $this->site['assetsPath']?>/img/capture/<?php echo $this->soft->codSoftware ?>.jpg" alt="<?php echo $this->soft->name ?>" /></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <?php } ?>
+    </div>
+
+
+</div> <!-- end contaiener-->
+<div id="footer-download" class="pge-download">
+<script type="text/javascript"> if (!window.mstag) mstag = {loadTag : function(){},time : (new Date()).getTime()};</script> <script id="mstag_tops" type="text/javascript" src="//flex.msn.com/mstag/site/89b5a1c5-2a82-414f-832a-9d2b4e430986/mstag.js"></script> <script type="text/javascript"> mstag.loadTag("analytics", {dedup:"1",domainId:"3116072",type:"1",actionid:"247193"})</script> <noscript> <iframe src="//flex.msn.com/mstag/tag/89b5a1c5-2a82-414f-832a-9d2b4e430986/analytics.html?dedup=1&domainId=3116072&type=1&actionid=247193" frameborder="0" scrolling="no" width="1" height="1" style="visibility:hidden;display:none"> </iframe> </noscript>
+                            

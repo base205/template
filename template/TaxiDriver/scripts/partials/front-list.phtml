@@ -1,0 +1,11 @@
+<div class="box">
+    <div class="img"><a href="http://<?=  $this->baseUrl().'/'.$this->uri ; ?>"><img src="<?= $this->partialLoop()->view->site['assetsPath'] ?>/img/icon/<?= $this->codSoftware ?>.png" width="64" height="64"  alt="<?= $this->name ?>" /></a></div>
+    <div class="text">
+        <h2><a href="http://<?=  $this->baseUrl().'/'.$this->uri ; ?>"><?php echo (strlen($this->name) > 10)?substr($this->name, 0, 10).'...':$this->name; ?></a></h2>
+        <p><?php echo (strlen($this->brief) > 95)?substr($this->brief, 0, 95).'...':$this->brief ?></p>
+    </div>
+    <a href="http://<?=  $this->baseUrl().'/'.$this->uri ; ?>" class="download_icon">
+        <b><?= Zend_Registry::get('tr')->translate('DOWNLOADS') ?></b>
+    </a>   
+</div> 
+<hr>

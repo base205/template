@@ -1,0 +1,28 @@
+
+<!--li>
+	<div class="icon">
+		<a class="name" href="http://<?= $this->uri . '.' . $this->baseUrl(); ?>">
+			<img src="<?= $this->partialLoop()->view->site['assetsPath'] ?>/img/icon/<?= $this->codSoftware ?>.png" width="48" height="48" alt="<?= $this->name ?>"/>
+		</a>
+	</div>
+    <div class="name">
+        <a class="name" href="http://<?= $this->uri . '.' . $this->baseUrl(); ?>">
+    		<?= $this->name ?>
+    	</a>
+    </div>
+	<div class="download-btn-lite">
+		<a class="btn-download-icon" href="http://<?= $this->uri . '.' . $this->baseUrl(); ?>"></a>
+	</div>
+
+</li-->
+
+<div class="column">
+    <div class="img"><a href="http://<?=  $this->baseUrl().'/'.$this->uri ; ?>"><img src="<?= $this->partialLoop()->view->site['assetsPath'] ?>/img/icon/<?= $this->codSoftware ?>.png" /></a></div>
+    <div class="text">
+        <h2><a href="http://<?=  $this->baseUrl().'/'.$this->uri ; ?>" class="blanco"><?php echo (strlen($this->name) > 10)?substr($this->name, 0, 10).'...':$this->name; ?></a></h2>
+        <p><?php echo (strlen($this->brief) > 95)?substr($this->brief, 0, 95).'...':$this->brief ?></p>
+    </div>
+    <a href="http://<?=  $this->baseUrl().'/'.$this->uri ; ?>" class="download_icon">
+        <b><?php echo Zend_Registry::get('tr')->translate('DOWNLOAD') ?></b>
+    </a>   
+</div>

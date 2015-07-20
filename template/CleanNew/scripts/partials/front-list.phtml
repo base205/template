@@ -1,0 +1,29 @@
+<li>
+    <div class="soft black">
+        <div class="soft-icon">
+            <a href="http://<?php echo $this->partialLoop()->view->baseUrl() . '/' . $this->uri ?>">
+                <img src="<?php echo $this->partialLoop()->view->site['assetsPath'] ?>/img/icon/<?php echo $this->codSoftware ?>.png" 
+                     width="64" height="64"  alt="<?php echo $this->name ?>" />
+            </a>
+        </div>
+        <div class="soft-item">
+            <div class="soft-name">
+                <a href="http://<?php echo $this->partialLoop()->view->baseUrl() . '/' . $this->uri ?>" class="uppercase">
+                    <?php 
+                    $name = (strlen($this->name) > 20)?substr($this->name, 0, 20).'...':$this->name;
+                    echo $name
+                    ?>
+                </a>
+            </div>
+            <div class="soft-brief">
+                <?php echo (strlen($this->brief) > 110)?substr($this->brief, 0, 110).'...':$this->brief ?>
+            </div>
+            <div class="soft-download-btn">
+                <a class="btn-download-small" href="http://<?php echo $this->partialLoop()->view->baseUrl() . '/' . $this->uri ?>" 
+                    class="uppercase">
+                    <?php echo Zend_Registry::get('tr')->translate('DOWNLOAD') ?>
+                </a>
+            </div>
+        </div>
+    </div>
+</li>

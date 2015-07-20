@@ -1,0 +1,132 @@
+<?php 
+
+echo $this->soft->scriptLandingPage;
+
+?>
+
+<section id="home" >
+
+    <div class="content-inner">
+
+            <div id="content-left">
+
+                <div class="title-sof">
+
+                    <h1 class="title-sof"><?php echo $this->soft->name ?></h1>
+
+                </div>
+
+                <div class="btn-download-soft">
+
+                 <?php if($this->platform['isWindows']){ ?>
+
+                        <a class="uppercase" href="<?php echo '/download/'.$this->uri.$this->statKey; ?>"><img src="<?php echo $this->site['assetsPath']?>/img/btn-arrow.png" alt="<?php echo $this->soft->name ?>" /><br /><?php echo Zend_Registry::get('tr')->translate('Download here!') ?></a>
+
+                    <?php
+
+                        }else{
+
+                        echo (isset($this->banner->mobileMonetization)) ? $this->banner->mobileMonetization : '';
+                    }
+
+                    ?>
+
+                </div>
+
+                <?php if($this->platform['isWindows']){ ?>
+
+                    <div id="downloadAdvice"><?php echo $this->downloadInfo; ?></div>
+
+                <?php } ?>
+
+            </div>
+
+            <div id="content-right">
+
+                <div class="content-picture">
+
+                    <div class="picture-frame"></div>
+
+                          <img class="picture" width="430" src="<?php echo $this->site['assetsPath']?>/img/capture/<?php echo $this->soft->codSoftware ?>.jpg" alt="<?php echo $this->soft->name ?>" />
+
+                            <?php if(file_exists("img/capture/{$this->soft->codSoftware}_2.jpg")){?>
+
+                            <img class="picture" width="430" src="<?php echo $this->site['assetsPath'] ?>/img/capture/<?php echo $this->soft->codSoftware ?>_2.jpg" alt="<?php echo $this->soft->name ?>" />
+
+                            <?php }?>
+
+                            <?php if(file_exists("img/capture/{$this->soft->codSoftware}_3.jpg")){?>
+
+                            <img class="picture" width="430" src="<?php echo $this->site['assetsPath'] ?>/img/capture/<?php echo $this->soft->codSoftware ?>_3.jpg" alt="<?php echo $this->soft->name ?>" />
+
+                        <?php }?>
+
+                </div>
+
+                <?php if(file_exists("img/capture/{$this->soft->codSoftware}_2.jpg")){ ?>
+
+                <a href="#" class="capture-previous" id="prev"></a>
+
+                <a href="#" class="capture-next" id="next"></a>
+
+            <?php }?>
+
+            </div>
+
+    </div>
+
+</section>
+
+<section id="software-details">
+
+    <div class="content-inner">
+
+        <div class="software-detail">
+
+            <div id="content-title-category">
+
+            <h3><?php echo Zend_Registry::get('tr')->translate('Software details') ?></h3>
+
+             </div>
+
+            <div class="text-detail">
+
+            <?php echo $this->site['name'] . $this->tr->translate('is not an official partner or reseller of') . ' ' . $this->soft->developer . $this->tr->translate("'s products") ?>.
+
+            <br /><br />
+
+            <?php echo $this->soft->detail ?>
+
+
+
+            
+
+                 
+
+           
+
+
+
+            </div>
+
+            <?php if($this->platform['isWindows']){ ?>
+
+                        <a class="uppercase btnd" href="<?php echo '/download/'.$this->uri.$this->statKey; ?>"><?php echo Zend_Registry::get('tr')->translate('Download here!') ?></a>
+
+                    <?php } ?>
+
+
+
+        </div>
+
+    </div>
+
+    <div id="toolbar">
+
+            <div id="toolbarImg"><img src="<?php echo $this->site['assetsPath']?>/img/toolbar.png" alt="additional software" /></div>
+
+            <div id="toolbarText" class="arial"><?php echo $this->toolbar; ?></div>
+
+        </div>
+
+</section>

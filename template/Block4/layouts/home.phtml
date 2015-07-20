@@ -1,0 +1,74 @@
+<?php echo $this->doctype() ?>
+
+<html lang="<?php echo $this->site['langCode'] ?>">
+	<head>
+		<!-- Meta -->
+		<?php echo $this->headMeta()->appendHttpEquiv('Content-Type', 'text/html;charset=utf-8'); ?>
+		
+		<!-- Title -->
+		<?php echo $this->headTitle(); ?>
+
+		<!-- CSS -->
+		<link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet" type="text/css" />
+		<link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" />
+		<?php echo $this->headLink()->appendStylesheet($this->site['assetsPath'] . '/css/site.css')
+							 ->headLink(array('rel' => 'icon', 'href' => $this->site['assetsPath'] . '/img/favicon.ico', 'type' => 'image/x-icon')); ?>
+		
+		<!-- Javascript -->
+		<?php echo $this->headScript()->appendFile($this->site['assetsPath'] . '/js/analytics.js')
+							->appendFile($this->site['assetsPath'] . '/../common/js/jquery.min.js')
+							->appendFile($this->site['assetsPath'] . '/../common/js/jquery.cycle.min.js')
+							->appendFile($this->site['assetsPath'] . '/../common/js/main.min.js'); ?>
+
+		<!--[if IE 9]><link href="<?php echo $this->site['assetsPath'] . '/css/main_ie9.css' ?>" rel="stylesheet"><![endif]-->
+		<!--[if IE 6]><link href="<?php echo $this->site['assetsPath'] . '/css/main_ie6.css' ?>" rel="stylesheet"><![endif]-->
+		<!--[if IE 7]><link href="<?php echo $this->site['assetsPath'] . '/css/main_ie7.css' ?>" rel="stylesheet"><![endif]-->
+		<!--[if lt IE 10]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	</head>
+
+	<body>
+
+		<input type="hidden" id="template" name="template" value="ukdownloadnet" />
+
+		<header class="[ masthead ]">
+			<div class="container">
+				<h1 class="masthead__logo"><a href="http://<?php echo $this->baseUrl() ?>"><img src="<?php echo $this->site['assetsPath']; ?>/img/logo.png" alt="<?php echo $this->baseUrl(); ?>" /></a></h1>
+				<form id="searchForm" action="http://<?php echo $this->baseUrl();?>/software/search" method="get" name="searchForm" class="masthead__search">
+					<input id="searchText" type="text" value="" name="search" class="masthead__search__query" placeholder="<?php echo Zend_Registry::get('tr')->translate('Search') ?>" />
+					<button type="submit" class="masthead__search__btn"><?php echo Zend_Registry::get('tr')->translate('Search') ?></button>
+				</form>
+			</div>
+		</header>
+		<!-- END .masthead -->
+
+		<nav class="[ mastnav ]">
+			<div class="container">
+				<ul class="mastnav__menu">
+					<?php echo $this->partialLoop('partials/pages-menu.phtml', $this->pages); ?>
+				</ul>
+				<!-- END .mastnav__menu -->
+			</div>
+		</nav>
+		<!-- END .mastnav -->
+
+		<div class="container">
+			<?php echo $this->layout()->content; ?>
+		</div>
+
+		<div class="[ disclaimer ]">
+			<div class="container">
+				<?php echo $this->action('index', 'content', null, array('section' => 'DISCLAIMER')); ?>
+			</div>
+		</div>
+		<!-- END .disclaimer -->
+
+		<footer class="[ mastfoot ]">
+			<div class="container">
+				<a href="http://<?php echo $this->baseUrl(); ?>" class="back">Ir a <span>Home</span></a>
+				<p class="mastfoot__copyright">Copyright 2014, <?php echo $this->baseUrl(); ?></p>
+			</div>
+		</footer>
+		<!-- END .mastfoot -->
+
+	</body>
+</html>

@@ -1,0 +1,77 @@
+<?php 
+echo $this->soft->scriptLandingPage;
+if ( isset($this->googleQuery) ) {
+?>
+<p id="googleSearch"><?= $this->tr->translate('You have searched for'); ?> "<?= $this->googleQuery ?>"</p>
+<?php } ?>
+<?php //echo $this->site['assetsPath'] . "/img/capture/" . $this->soft->codSoftware;?>
+
+<section class="main">
+    <div class="container">
+        <div class="content">  
+            <article>	
+
+				<div class="soft">
+				    <div class="img"><img src="<?php echo $this->site['assetsPath'] . '/img/icon/' . $this->soft->codSoftware.'.png' ?>" alt="<?= $this->soft->name ?>" /></div>
+				    <h2 class="softName"><?= $this->soft->name ?></h2>
+				    <a href="<?php echo '/download/'.$this->soft->softwareUri.$this->statKey; ?>" class="download_btn">
+				        <b><?= $this->tr->translate('Download') ?></b>
+				    </a> 
+				    <div id="termsBox">
+			        	<?php echo $this->terms?>
+				    </div>
+				    <span><?php echo $this->soft->brief; ?></span>
+				    <ul class="secure">
+						<?= $this->partial('partials/secure.phtml'); ?>
+				    </ul>
+				    <?php echo $this->downloadInfo; ?>
+				</div>                                                                  
+
+				<div class="softwarePage__details">
+					<div class="title"><?php echo $this->tr->translate('Software Details') ?></div>
+
+				<div class="softwarePage__details__content">
+					<p><?php echo $this->site['name'] . $this->tr->translate('is not an official partner or reseller of') . ' ' . $this->soft->developer . $this->tr->translate("'s products") ?></p>
+
+			        <?php echo $this->soft->detail; ?>
+
+			    </div>
+				    <div class="softwarePage__details__expand">
+				    	<a href="javascript:;" class="softwarePage__details__expand__btn" onclick="$('.softwarePage__details').toggleClass('active');">
+				    		<span class="onlyInactive">
+				    			<i class="fa fa-chevron-down"></i>
+								<b><?php echo Zend_Registry::get('tr')->translate('READ MORE') ?></b>
+				    		</span>
+				    		<span class="onlyActive">
+				    			<i class="fa fa-chevron-up"></i>
+								<b><?php echo Zend_Registry::get('tr')->translate('READ LESS') ?></b>
+				    		</span>
+				    	</a>
+				    </div>
+
+				</div>  
+
+
+
+
+			</article>
+			<aside>
+				<div class="topDescargas landing">
+			        <div class="title"><?= Zend_Registry::get('tr')->translate('ABOUT THE DOWNLOAD'); ?></div>
+			        <p style="font-weight:bold; font-size:15px; padding: 0 14px;">
+		            	non-affiliation disclaimer: <?php echo $this->baseUrl() . $this->tr->translate('is not an official partner or reseller of') . ' ' . $this->soft->developer . $this->tr->translate("'s products") ?>.<br /><br />
+		            </p>
+		            <div class="helper helper--download-disclaimer">
+		                <h3><?php echo $this->tr->translate('Examples of commercial offers');?>:</h3>
+		                <p style="text-decoration: underline">Toolbars:</p>
+		                <img src="<?php echo $this->image('toolbar.png'); ?>" alt="Additional Software" width="289" height="20" />
+		                <?php echo $this->toolbar; ?>
+		                <p style="text-decoration: underline">PC Backup Software:</p>
+		                <img src="<?php echo $this->image('mypcbackup.png'); ?>" alt="Additional Software" width="289" />
+		                <p><?php echo $this->tr->translate('MyPC Backup description') ?></p>
+		            </div>
+			    </div>	    
+			</aside>
+		</div>
+	</div>
+</section>				

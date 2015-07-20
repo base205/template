@@ -1,0 +1,11 @@
+<div class="content-inner">
+    <div class="page arial">
+        <?php if ( isset($this->form) ) echo $this->form ?>
+
+        <?php if ( isset($this->successMail) ): ?>
+                <div class="message">
+                        <span> <?php echo $this->successMail ?></span>
+                </div>
+        <?php endif ?>
+    </div>
+</div>

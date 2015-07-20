@@ -1,0 +1,107 @@
+<?php 
+        $this->headScript()->appendFile($this->site['assetsPath'] . '/../common/js/jquery.min.js');
+        $this->headScript()->appendFile($this->site['assetsPath'] . '/../common/js/jquery.cycle.min.js');
+        $this->headScript()->appendFile($this->site['assetsPath'] . '/js/jquery-ui.custom.min.js');
+        $this->headScript()->appendFile($this->site['assetsPath'] . '/../common/js/main.min.js');
+        $this->headScript()->appendFile($this->site['assetsPath'] . '/js/main.js');
+
+echo $this->soft->scriptDownloadPage; 
+if (strpos(strtolower($_SERVER["HTTP_USER_AGENT"]), "chrome")) { 
+    $instructionsClass = 'instructions-chrome';
+    $arrow = 'arrow-chrome';
+} elseif (strpos(strtolower($_SERVER["HTTP_USER_AGENT"]), "firefox")) {
+    $instructionsClass = 'instructions-firefox';
+    $arrow = 'arrow-firefox';
+} elseif (strpos(strtolower($_SERVER["HTTP_USER_AGENT"]), "trident") || strpos(strtolower($_SERVER["HTTP_USER_AGENT"]), "msie")) {
+    $instructionsClass = 'instructions-explorer';
+    $arrow = 'arrow-ie'; 
+} else {
+    $instructionsClass = 'instructions-generic';
+    $arrow = ''; 
+}
+?>
+
+
+
+<section id="software-list" class="download-page">
+    <div id="download">
+        <div id="countdown">
+            <h1 id="countdown"><?php echo $this->tr->translate('Your download will start in')?> <span id="countdownNumber" class="count">5</span> <?php echo $this->tr->translate('seconds...'); ?></h1>
+        </div>
+        <div id="again">
+            <?php echo $this->tr->translate('If the download does not start, please'); ?> 
+            <a href="javascript:download('<?php echo $this->downloadUrl ?>', '<?php echo $this->downloadName ?>');">
+                <?php echo $this->tr->translate('click here'); ?></a>
+        </div>
+    </div>
+    <input type="hidden" name="downloadUrl" id="downloadUrl" value="<?php echo $this->downloadUrl ?>"/>
+    <input type="hidden" name="downloadName" id="downloadName" value="<?php echo $this->downloadName ?>"/>
+    <input type="hidden" name="signature" id="signature" value="<?php echo $this->site['signature'] ?>"/>
+
+    <div class="content-inner">
+    <div id="content-title-result" class="download-title">
+        <h3>Follow this instructions to install <?php echo $this->soft->name; ?></h3>
+    </div>
+      <div id="content-left">
+                    <div class="title-sof">
+                          <span  class="icon-img" style="background: url(<?php echo $this->site['assetsPath'] . '/img/icon/' . $this->soft->codSoftware.'.png' ?>) no-repeat;"></span>
+
+                        <?php echo $this->soft->name ?>
+                        <p><?php echo $this->tr->translate('Thanks for downloading')?></p>
+                    </div>
+                
+
+            </div>
+
+
+      <div id="instructions-box" class="<?php echo $instructionsClass ?>">
+        <img src="<?php echo $this->site['assetsPath'] . '/img/'.$instructionsClass.'.png' ?>">
+        <div class="steps">
+            <div id="steps1"><span><img src="<?php echo $this->site['assetsPath'] . '/img/stepNumber1.png' ?>" >Click Run or Open to begin</span></div>
+            <div id="steps2"><span><img src="<?php echo $this->site['assetsPath'] . '/img/stepNumber2.png' ?>" >Follow our easy installation wizard</span></div>
+            <div id="steps3"><span><img src="<?php echo $this->site['assetsPath'] . '/img/stepNumber3.png' ?>" >Enjoy your new software</span></div>
+        </div>
+    </div>
+
+    <div class="clear"></div>
+
+    </div>
+</section>
+<input type="hidden" id="baseUri" value="<?php echo $this->baseUrl(); ?>">
+
+<?php  if ($arrow != '') { ?>
+<!-- Modals -->
+<!-- chrome -->
+<div class="modales">
+    <div id="step-arrow-img" class="modal-<?php echo $arrow ?>" style="display: none; ">
+        <div class="modal-bg"></div>
+        <div class="modal-content-container">
+            <div class="<?php echo $arrow ?>"></div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+function shaker() {
+    $('#step-arrow-img').effect('shake', { 
+        direction: "up", 
+        distance: 8, 
+        times:3 
+    }, 2000);
+}
+
+$( document ).ready(function() {
+    var secs = $('#countdownNumber').html();
+    var interval = 1;
+    setInterval(function () {
+        secs -= interval;
+        if (secs >= 0) {
+            if (secs == 1) {
+                var shake = setInterval(shaker, 0);
+            }
+        }
+    }, secs * 200);
+        
+        
+});
+</script>
+<?php } ?>

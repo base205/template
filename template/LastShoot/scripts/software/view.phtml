@@ -1,0 +1,100 @@
+<?= $this->soft->scriptLandingPage; ?>
+
+<section class="hero">
+    <div class="container">
+        <div class="slider">
+            <ul class="slider__slides">
+                <li class="slider__slide" id="software-hero-<?= $this->soft->codSoftware; ?>">
+                    <div class="slider__slide__container">
+                        <div class="slider__slide__icon">
+                            <img src="<?= $this->software('icon', $this->soft); ?>" alt="<?= $this->soft->name; ?>" height="64" width="64" />
+                        </div>
+                        <div class="slider__slide__content">
+                            <div class="slider__slide__title">
+                                <h2><?= $this->soft->name; ?></h2>
+                            </div>
+                            <p class="slider__slide__brief">
+                                <?= $this->soft->brief; ?>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="slider__slide__download">
+                        <?php if(!$this->platform['isWindows']) { ?>
+                            <?php echo (isset($this->banner->mobileMonetization)) ? $this->banner->mobileMonetization : '' ; ?>
+                        <?php 
+                        } else {
+                            /*if ($this->statKey != '') {
+                                $premium = '&p=1';
+                            } else {
+                                $premium = '/?p=1';
+                            }
+                        ?>
+                            <a href="<?= 'downloads'.$this->statKey.$premium; ?>" class="slider__slide__download__btn">
+                                <i class="fa fa-angle-double-down"></i>
+                                <span><?= Zend_Registry::get('tr')->translate('DOWNLOAD'); ?></span><br />
+                                <span style="font-size: 18px;"><?= Zend_Registry::get('tr')->translate('PREMIUM_FAST_NO_WAIT'); ?></span>
+                            </a><br />
+                            <a href="<?= 'downloads'.$this->statKey; ?>" class="slider__slide__download__btn__slow">
+                                <span><?= Zend_Registry::get('tr')->translate('NORMAL_DOWNLOAD'); ?></span>
+                            </a>
+                        <?php */
+
+                        ?>
+                            <a href="<?= '/download/'.$this->uri.$this->statKey ?>" class="slider__slide__download__btn">
+                                <i class="fa fa-angle-double-down"></i>
+                                <span><?= Zend_Registry::get('tr')->translate('DOWNLOAD'); ?></span>
+                            </a>
+                        <?php } ?>
+                    </div>
+                </li>
+                <!-- END #software-hero-<?= $this->soft->codSoftware; ?> -->
+            </ul>
+            <!-- END .slider__slides -->
+        </div>
+        <!-- END .slider -->
+
+        <div class="helper helper--download-disclaimer">
+            <?= $this->downloadInfo; ?>
+        </div>
+    </div>
+</section>
+<!-- END .hero -->
+
+<section class="software software--single" id="software-<?= $this->soft->codSoftware; ?>">
+    <div class="container">
+        <div class="software__title">
+            <h3><?= Zend_Registry::get('tr')->translate('SOFTWARE FEATURES') ?></h3>            
+        </div>
+
+        <div class="software__content">
+            <div class="software__capture">
+                 <img src="<?= $this->software('capture', $this->soft); ?>" alt="<?= $this->soft->name ?>" width="477" height="332" />
+            </div>           
+
+            <p class="software__partnership">
+                <?= $this->site['name'] . $this->tr->translate('is not an official partner or reseller of') . ' ' . $this->soft->developer . $this->tr->translate("'s products") ?>.
+            </p>
+
+            <?= $this->soft->detail ?>
+
+            <?php if($this->platform['isWindows']): ?>
+            <div class="software__download">
+                <a href="<?= '/download/'.$this->uri.$this->statKey ?>" class="software__download__btn">
+                    <i class="fa fa-angle-double-down"></i>
+                    <span><?= Zend_Registry::get('tr')->translate('DOWNLOAD'); ?></span>
+                </a>
+            </div>
+            <?php endif; ?>
+
+            <div class="software__toolbar">
+                <img src="<?= $this->image('toolbar.png'); ?>" alt="Additional Software" width="289" height="20" />
+                <div class="software__toolbar__disclaimer">
+                    <?= $this->toolbar; ?>
+                </div>
+            </div>
+            <!-- END .software__toolbar -->
+        </div>
+        <!-- END .software__content -->
+    </div>
+</section>
+<!-- END #software-<?= $this->soft->codSoftware; ?> -->

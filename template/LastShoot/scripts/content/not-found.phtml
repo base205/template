@@ -1,0 +1,10 @@
+<section class="page">
+    <div class="container">
+        <div class="page__404">
+            <h3 class="uppercase"><?= $this->action('index', 'content', null, array('section' => 'ERROR')); ?></h3>
+        </div>
+    </div>
+</section>
+<!-- END .page -->
+
+<?= $this->partial('partials/categories.phtml', array('categories' => $this->categories)); ?>

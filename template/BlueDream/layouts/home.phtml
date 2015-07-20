@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="<?= $this->param('langCode') ?>">
+
+    <head>
+        <!-- Meta -->
+        <?= $this->meta() ; ?>
+
+        <!-- Title -->
+        <?= $this->title(); ?>
+
+        <!-- Assets -->
+        <?= $this->asset('main.min.css'); ?>
+        <?= $this->asset('img/favicon.ico', array('rel' => 'icon')); ?>
+        <!-- Fallback -->
+
+        <!--[if IE 9]>
+            <link href="<?php echo $this->site['assetsPath'] . '/css/main_ie9.css' ?>" rel="stylesheet">
+        <![endif]-->
+        <!--[if IE 6]>
+            <link href="<?php echo $this->site['assetsPath'] . '/css/main_ie6.css' ?>" rel="stylesheet">
+        <![endif]-->
+        <!--[if IE 7]>
+            <link href="<?php echo $this->site['assetsPath'] . '/css/main_ie7.css' ?>" rel="stylesheet">
+        <![endif]-->
+        <!--[if lt IE 10]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+        <?php echo $this->headScript()->appendFile($this->site['assetsPath'] . '/js/analytics.js') ?>
+    </head>
+
+<body>
+    <div id="wrapper">
+        <header>
+            <div class="content" id="head">
+                <div class="drop">
+                    <ul class="drop_menu">
+                        <li>
+                            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <ul>
+                                <li>
+                                    <?php echo $this->partialLoop('partials/pages-menu.phtml', $this->pages); ?>
+                                </li>
+                            </ul>
+			</li>
+                    </ul>
+		</div>
+		<a href="http://<?php echo $this->baseUrl() ?>" id="logo"></a>
+            </div>
+	    </header>
+
+        <?php echo $this->layout()->content; ?>
+        <footer id="footer">
+            <div class="content">
+		      <div class="text-footer">
+                    <?php echo $this->action('index', 'content', null, array('section' => 'DISCLAIMER')); ?>
+		      </div>
+		      <div id="menu" class="box-right">
+                    <nav>
+                        <?php echo $this->partialLoop('partials/pages-menu.phtml', $this->pages); ?>
+                    </nav>
+		      </div>
+            </div>
+        <div class="clearboth"></div>
+	</footer>
+    </div>
+        
+        <!-- Scripts -->
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.10.0/jquery.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.cycle/3.03/jquery.cycle.all.min.js"></script>
+        <script>$(function(){$("#slider").cycle({fx:"fade",prev:"#prev",next:"#next",delay:-5e3,pagerAnchorBuilder:function(e,t){return'<a href="#"> </a>'}})})</script>
+        <?= $this->headScript(); ?>
+        <?= $this->script(array('../common/js/main.min.js')); ?>
+        <input type="hidden" id="template" value="BlueDream" />
+
+    </body>
+</html>
+<!-- <?= $this->param('name'); ?> -->

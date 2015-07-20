@@ -1,0 +1,262 @@
+<?php 
+echo $this->soft->scriptLandingPage;
+if ( isset($this->googleQuery) ) {
+?>
+<p id="googleSearch"><?= $this->tr->translate('You have searched for'); ?> "<?= $this->googleQuery ?>"</p>
+<?php } ?>
+<div id="splash">
+	<div class="splash-right">
+		<div id="capture-container">
+			<div id="capture">
+                <img width="475" src="<?= $this->site['assetsPath']?>/img/capture/<?= $this->soft->codSoftware ?>.jpg" alt="<?= $this->soft->name ?>" />
+                <?php if(file_exists("img/capture/{$this->soft->codSoftware}_2.jpg")){?>
+                <img width="475" src="<?= $this->site['assetsPath'] ?>/img/capture/<?= $this->soft->codSoftware ?>_2.jpg" alt="<?= $this->soft->name ?>" />
+                <?php }?>
+                <?php if(file_exists("img/capture/{$this->soft->codSoftware}_3.jpg")){?>
+                <img width="475" src="<?= $this->site['assetsPath'] ?>/img/capture/<?= $this->soft->codSoftware ?>_3.jpg" alt="<?= $this->soft->name ?>" />
+                <?php }?>
+			</div>
+
+		<?php if($this->platform['isWindows']): ?>
+			<a class="download-btn-free" href="<?= 'downloads'.$this->statKey; ?>"></a>
+		<?php endif; ?>
+			<div id="btn-capture">
+		<?php if(file_exists("img/capture/{$this->soft->codSoftware}_2.jpg")):?>
+			<a href="#" class="capture-previous" id="prev">&lt;</a>
+			<a href="#" class="capture-next" id="next">&gt;</a>
+   		<?php endif; ?>
+			
+		</div>
+			
+		</div>
+	</div>
+
+	<div class="splash-left">
+		<div id="name">
+			<h1><?= $this->soft->name ?></h1>
+		</div>
+
+		<div id="icon">
+	        <img src="<?= $this->site['assetsPath'] ?>/img/icon/<?= $this->soft->codSoftware ?>.png" width="64" height="64" alt="<?= $this->soft->name ?>" />
+	    </div>
+
+		<div id="brief">
+			<h2><?= $this->soft->brief ?></h2>
+		</div>
+		<?php if($this->platform['isWindows']): ?>
+
+		    <div id="download-btn-container">
+		    	
+		        <a href="<?= 'download/'.$this->uri; ?>" class="download-btn-big" id="download-btn-big"  role="button">
+		            <div id="download-btn-text">
+	    	            <?= $this->tr->translate('Download'); ?>
+	    	            <span class="uppercase"><?= $this->tr->translate('Free and safe download') ?></span>
+		            </div>
+		            <div id="download-btn-img">
+		                <img src="<?= $this->site['assetsPath'] ?>/img/download-img.png" alt=""/>
+		            </div>
+		        </a>
+		        
+		    </div>
+
+			<div id="advice">
+				<?= $this->downloadInfo; ?>
+			</div>
+
+			<div id="secure">
+			    <?= $this->partial('partials/secure.phtml'); ?>
+			</div>
+		<?php else: ?>
+			<div id="download-btn-container" class="banners">
+					<?php echo (isset($this->banner->mobileMonetization)) ? $this->banner->mobileMonetization : '' ;?>
+				
+				<span id="download-btn-big" style="display:none;"></span>
+			</div>
+	    <?php endif; ?>
+	</div>
+</div>
+
+<div id="software-detail">
+	<h3 class="uppercase"><?= $this->tr->translate('Software Details') ?></h3>
+	<div id="software-detail-text">
+            <?php
+            if ($this->rightBanner) {
+                echo $this->showBanner($this->rightBanner, 'rightBanner');
+            }
+            ?>
+            <?= $this->site['name'] . $this->tr->translate('is not an official partner or reseller of') . ' ' . $this->soft->developer . $this->tr->translate("'s products") ?>.
+            <br />
+            <?= $this->soft->detail ?><br />
+        </div>
+	<div id="software-detail-readmore" class="software-detail-readmoreless">
+            <span class="comments-head"><?= ( count($this->comments)>0 ) ? $this->tr->translate('Comments') : '&nbsp;'; ?></span>
+	    <div class="read-more-less-blank"></div>
+	    <div id="readmore" class="read-more-less">
+	        <?= $this->tr->translate('Read more') ?>
+	    </div>
+	</div>
+	<div id="software-detail-readless" class="software-detail-readmoreless">
+            <span class="comments-head"><?= ( count($this->comments)>0 ) ? $this->tr->translate('Comments') : '&nbsp;'; ?></span>
+	    <div class="read-more-less-blank"></div>
+	    <div id="readless" class="read-more-less">
+	        <?= $this->tr->translate('Read less') ?>
+	    </div>
+	</div>
+	<?php if ( count($this->comments)>0 ) {?>
+	<div id="software-detail-comments">
+	    <?php
+	    $comments = 0;
+        foreach ( $this->comments as $comment ) {
+            $comments++;
+            if ( $comments <= 3 ) {
+        ?>
+        	    <div class="comment">
+        	        <div class="comment-image"><img src="<?= $this->site['assetsPath'] ?>/img/avatar_<?= $comment->image ?>.png" width="32" height="32" alt="" /></div>
+        	        <div class="comment-title">"<?= $comment->title ?>"</div>
+        	        <div class="comment-user"><?= $this->tr->translate('By').' '.$comment->user ?></div>
+        	        <div class="comment-text"><?= $comment->comment ?></div>
+        	    </div>
+	    <?php
+            }
+	    }
+        if ( $comments < 3 ) {
+            for ($i = $comments; $i < 3; $i++) {
+        ?>
+            <div class="no-comment"></div>
+        <?php
+            }
+        }
+        ?>
+    </div>
+        <?php } ?>
+</div>
+
+
+<div id="stamp"></div>
+
+<div id="stamp-bottom"></div>
+
+<div id="specs">
+    <div class="spec-item">
+        <?= $this->tr->translate('Rating'); ?>
+    </div>
+	<div class="spec-value">
+		<div class="stars ratingsm-<?= (ceil($this->soft->rating/2)) ?>">   
+		</div>
+		<div class="textRating">
+		<?php
+		switch($this->soft->rating) {
+		    case 1:
+		    case 2:
+		    case 3:
+		    case 4: echo $this->tr->translate('Not Good'); break;
+		    case 5:
+		    case 6: echo $this->tr->translate('Not Bad'); break;
+		    case 7: echo $this->tr->translate('Good'); break;
+		    case 8: echo $this->tr->translate('Very Good'); break;
+		    case 9: echo $this->tr->translate('Excellent'); break;
+		    case 10: echo $this->tr->translate('Essential'); break;
+		    default: echo '';
+		}
+		?>
+        </div>
+	</div>
+
+    <div class="spec-item">
+        <?= $this->tr->translate('License'); ?>
+    </div>
+	<div class="spec-value">
+		<?= $this->soft->license ?>
+	</div>
+    <div class="spec-item">
+        <?= $this->tr->translate('Language'); ?>
+    </div>
+	<div class="spec-value">
+            <?= $this->tr->translate('lang_' . $this->site['langCode']); ?>
+	</div>
+    <div class="spec-item">
+        <?= $this->tr->translate('SO'); ?>
+    </div>
+	<div class="spec-value-large">
+		<p><?= str_replace(',', '</p><p>', $this->soft->os) ?></p>
+	</div>
+    <div class="spec-item">
+        <?= $this->tr->translate('Version'); ?>
+    </div>
+	<div class="spec-value">
+		<?= $this->soft->version ?>
+	</div>
+    <div class="spec-item">
+        <?= $this->tr->translate('Downloads'); ?>
+    </div>
+	<div class="spec-value">
+		<?= $this->soft->downloads ?>
+	</div>
+    <div class="spec-item">
+        <?= $this->tr->translate('Size'); ?>
+    </div>
+	<div class="spec-value">
+		<?= $this->soft->size ?>
+	</div>
+    <div class="spec-item">
+    	<?= $this->tr->translate('Developer'); ?>
+    </div>
+	<a class="spec-value" target="_blank" href="<?= $this->soft->developerWeb ?>">
+		<?= $this->soft->developer ?>
+	</a>
+</div>
+<div id="specs-bottom"></div>
+<?php
+if ($this->footerBanner) {
+    echo $this->showBanner($this->footerBanner, 'footerBanner');
+}
+?>
+<div id="toolbar">
+    <div id="toolbarText"><?= $this->toolbar; ?></div>
+    <div id="toolbarImg"></div>
+    <div class="clear"></div>
+</div>
+<div class="clear"></div>
+
+<div id="fixedHeader" style="visibility: hidden; top:0px;">
+	<div id="fixed-right">
+		<div class="stamp">
+			<img src="<?= $this->site['assetsPath'] ?>/img/stamp.png" alt="stamp"/>
+		</div>
+	</div>
+	<div id="fixed-left">
+		<div id="fixed-icon">
+	        <img src="<?= $this->site['assetsPath'] ?>/img/icon/<?= $this->soft->codSoftware ?>.png" width="64" height="64" alt="<?= $this->soft->name ?>" />
+	    </div>
+		<div id="fixed-name">
+			<?= $this->soft->name ?>
+		</div>
+
+		<div id="fixed-brief">
+			<?= $this->soft->brief ?>
+		</div>
+
+	    <div id="fixed-download-btn-container">
+	    	<?php if($this->platform['isWindows']): ?>
+	        <a href="<?= 'downloads'.$this->statKey; ?>" id="download-btn-big-fixed" class="download-btn-big" role="button">
+	            <div id="download-btn-fixed-text">
+    	            <?= $this->tr->translate('Download'); ?>
+    	            <span class="uppercase"><?= $this->tr->translate('Free and safe download') ?></span>
+	            </div>
+	            <div id="download-btn-fixed-img">
+	                <img src="<?= $this->site['assetsPath'] ?>/img/download-img.png" alt=""/>
+	            </div>
+	        </a>
+	          <?php endif; ?>
+	    </div>
+
+	    <div id="fixed-advice">
+			<?= $this->downloadInfo; ?>
+		</div>
+<!--
+		<div id="secure-fixed">
+		    <?= $this->partial('partials/secure.phtml'); ?>
+		</div>
+-->
+	</div>
+</div>

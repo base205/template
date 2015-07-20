@@ -1,0 +1,118 @@
+    <?php
+    if ($this->headerBanner) {
+        echo $this->showBanner($this->headerBanner, 'headerBanner');
+    }
+    ?>
+	<div id="slider">
+
+			<?php foreach ( $this->featured as $featured ) { ?>
+				<div>
+					<div class="content-box left">
+						<h1 class="text-1 Light">
+							<?php echo $featured->name ?>
+						</h1>
+						<p class="text-3 Regular">
+							<?php echo $featured->brief ?>
+						</p>
+						<a href="http://<?php echo $this->baseUrl() . '/' . $featured->uri; ?>" class="btn-download">
+							<span class="t-dw black">
+								<span class="text-btn-dw"><?php echo Zend_Registry::get('tr')->translate('DOWNLOAD') ?> <span><?php echo Zend_Registry::get('tr')->translate('100% SAFE DOWNLOAD') ?></span></span>
+							</span>
+
+						</a>
+					</div>
+					<div class="content-box left">
+						<div id="content-img"></div>
+						<img src="<?php echo $this->site['assetsPath'] . '/img/capture/' . $featured->codSoftware . '-featured.png' ?>"  
+							alt="<?php echo $featured->name ?>" class="scren" width="440"/>
+					</div>
+				</div>
+				  <?php } ?>
+			</div> <!-- end slide-->
+            <?php
+            if ($this->footerBanner) {
+                echo $this->showBanner($this->footerBanner, 'footerBanner');
+            }
+            ?>
+			<div class="header-list">
+				<a href="#" class="title-tab left Light"><span><?php echo $this->tr->translate('Hot Software') ?></span></a>
+				<a href="#" class="title-tab left Light" ><span><?php echo $this->tr->translate('New Software') ?></span></a>
+			</div>
+	<div id="content-software">
+		<div class="content-box left">
+			<ul class='front-list'>
+				<?php echo $this->partialLoop('partials/front-list.phtml', $this->hotSoftware); ?>
+			</ul>
+
+			</div> <!-- content-box -->
+	<div class="content-box left border-l">
+				
+			<ul class='front-list'>
+				<?php echo $this->partialLoop('partials/front-list.phtml', $this->newSoftware); ?>
+			</ul>
+		</div><!-- content-box -->
+	</div> <!-- content-soft -->
+</div> <!-- end contaiener-->
+		<div id="footer-download">
+			<div class="container">
+				<h2 class="Light title-tab"><?php echo $this->tr->translate('TOP DOWNLOADS') ?></h2>
+
+				<div id="slide-footer">
+					<ul class="list-software">
+					
+						<?php 
+						$nl = 0;
+
+						foreach ($this->topDownloads as $softTop) { ?>
+							
+							<?php echo ($nl == 0)?'<li>':''; ?>
+									<div class="soft black">
+							        <div class="soft-icon">
+							            <a href="http://<?php echo $this->baseUrl() . '/' . $softTop->uri; ?>">
+							                <img src="<?php echo $this->site['assetsPath'] ?>/img/icon/<?php echo $softTop->codSoftware ?>.png" 
+							                     width="64" height="64"  alt="<?php echo $softTop->name ?>" />
+							            </a>
+							        </div>
+							        <div class="soft-item">
+							            <div class="soft-name">
+							                <a href="http://<?php echo $this->baseUrl() . '/' . $softTop->uri; ?>" class="uppercase">
+							                    <?php 
+							                    $name = (strlen($softTop->name) > 20)?substr($softTop->name, 0, 20).'...':$softTop->name;
+							                    echo $name;
+							                    ?>
+							                </a>
+							            </div>
+							           
+							            <div class="soft-download-btn">
+							                <a class="btn-download-small" href="http://<?php echo $this->baseUrl() . '/' . $softTop->uri; ?>" class="uppercase">
+							                    <?php 
+							                    echo Zend_Registry::get('tr')->translate('DOWNLOAD') ;
+							                    ?>
+							                </a>
+							            </div>
+							        </div>
+							    </div>
+							    
+							<?php if($nl == 1)
+							{ 
+								echo '</li>'; 
+								$nl = 0;
+
+							 }else{
+							 	$nl++;
+							 }
+						?>
+
+
+						<?php } ?>
+
+		        
+				</ul>
+					
+			</div> <!--  end slider footer -->
+					<div class="footer-nav">
+						<a href="#" id="prev-f">&lt;</a> 
+	       				 <a href="#" id="next-f">&gt;</a>
+	       			</div>	
+
+			</div> <!-- end  contentainer -->

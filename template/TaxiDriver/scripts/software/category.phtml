@@ -1,0 +1,56 @@
+<section class="hero">
+    <div class="container">
+        <div class="banner">
+            <?php
+      if ($this->headerBanner) {
+          echo $this->showBanner($this->headerBanner, 'headerBanner');
+      }
+      ?>
+        </div>
+    </div>
+</section>    
+
+
+<section class="main">
+    <div class="container">
+        <div class="content">
+            
+          <div id="page">
+            <?php if(count($this->paginator) === 0): ?>
+                <div class="page__404">
+                    <h3><?= $this->tr->translate('SOFTWARE NO FOUND IN CATEGORY'); ?></h3>
+                    <span class="not-found">"<?= ($this->category == null)?'':$this->category->category; ?>"</span>
+                </div>
+            <?php endif; ?>
+            <div class="software__pagination">
+                <h3><?= $this->tr->translate('SOFTWARE'); ?></h3>
+                <?= $this->paginationControl($this->paginator, 'Sliding', 'partials/pagination.phtml'); ?>
+            </div>
+            <ul class="software__list">
+                <?= $this->partialLoop('partials/front-list.phtml',  $this->paginator); ?>
+            </ul>
+            
+          </div>
+
+          <aside>
+              <div class="banner">
+                  <?= $this->showBanner($this->headerBanner, 'ad', 'header'); ?>
+              </div>
+              <div class="topDescargas">
+                  <div class="title"><?= Zend_Registry::get('tr')->translate('TOP DOWNLOADS'); ?></div>
+                  <?= $this->partialLoop('partials/front-list.phtml',  array_splice($this->topDownloads,0,3)); ?>
+              </div>
+          </aside>
+        </div>         
+    </div>
+
+</section>
+
+
+
+
+<?php
+if ($this->footerBanner) {
+    echo $this->showBanner($this->footerBanner, 'footerBanner');
+}
+?>

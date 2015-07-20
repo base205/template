@@ -1,0 +1,17 @@
+<section class="software software--blocks software--blocks--alt">
+    <div class="container">
+
+        <?php echo $this->showBanner($this->headerBanner, 'ad', 'header'); ?>
+        <h3><?= $this->tr->translate('THANK YOU FOR YOUR DOWNLOAD'); ?></h3>
+        <h5><?= $this->tr->translate('MAYBE_YOU_ARE_INTERESTED_IN_THESE') ?> <?= $this->tr->translate('RECOMENDED SOFTWARE') ?></h5>
+
+        <ul class="software__list">
+            <?= $this->partialLoop('partials/front-list.phtml',  $this->paginator); ?>
+        </ul>
+
+        <?= $this->showBanner($this->footerBanner, 'ad', 'footer'); ?>
+    </div>
+</section>
+<!-- END .software.software-blocks -->
+
+<?= $this->partial('partials/categories.phtml', array('categories' => $this->categories)); ?>

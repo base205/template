@@ -1,0 +1,18 @@
+<section class="page">
+    <div class="container">
+        <?= $this->showBanner($this->headerBanner, 'ad', 'header'); ?>
+
+        <?php if( ! empty($this->image)): ?>
+        <div class="page__image">
+            <img src="<?= $this->image; ?>" />
+        </div>
+        <?php endif; ?>
+
+        <div class="page__content">
+            <?= $this->content; ?>
+        </div>
+
+        <?= $this->showBanner($this->footerBanner, 'ad', 'footer'); ?>
+    </div>
+</section>
+<!-- END .page -->
